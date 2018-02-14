@@ -1,4 +1,4 @@
-package model.db
+package models.db
 
 import models.Item
 import slick.jdbc.JdbcProfile
