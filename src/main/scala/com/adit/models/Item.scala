@@ -1,3 +1,3 @@
 package models
 
-case class Item(sku: String, name:String, Qty:Int)
+case class Item(sku: String, name:String, qty:Int)
