@@ -59,6 +59,6 @@ curl -X "PUT" "http://localhost:8080/items/1" \
   "sku":"SSI-D00864661-MM-MAR",
   "name": "Deklia Plain Casual Blouse (M,Maroon)",
   "qty": 16
-  }
+  }'
 ```
 
