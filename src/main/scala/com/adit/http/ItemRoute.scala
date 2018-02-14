@@ -11,7 +11,7 @@ trait Protocols extends SprayJsonSupport with DefaultJsonProtocol{
     implicit val itemFormat = jsonFormat3(Item)
 }
 
-class ItemRoute(val itemService:ItemService) extends Protocol{
+class ItemRoute(val itemService:ItemService) extends Protocols{
     val route = logRequestResult("ItemRoutes"){
         pathPrefix("items"){
             pathEndOrSingleSlash{
