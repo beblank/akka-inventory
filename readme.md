@@ -1,6 +1,8 @@
 
 ## Usage
 
+[Install SBT](https://www.scala-sbt.org/)
+
 ### Start up an instance of Mysql db:
 
 ```sh
