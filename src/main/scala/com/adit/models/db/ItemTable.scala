@@ -7,10 +7,11 @@ case class DAO(val driver:JdbcProfile){
     import driver.api._
 
     class Items(tag:Tag) extends Table[Item](tag, "ITEMS"){
-        def sku = column[String]("item_sku", O.PrimaryKey)
+        def id = column[Long]("item_id", O.PrimaryKey)
+        def sku = column[String]("item_sku")
         def name = column[String]("item_name")
         def qty = column[Int]("item_qty")
 
-        override def * = (sku, name, qty) <> ((Item.apply _).tupled, Item.unapply)
+        override def * = (id.?, sku, name, qty) <> ((Item.apply _).tupled, Item.unapply)
     }
 }

@@ -1,3 +1,3 @@
 package models
 
-case class Item(sku: String, name:String, qty:Int)
+case class Item(id:Option[Long] =None, sku: String, name:String, qty:Int)
