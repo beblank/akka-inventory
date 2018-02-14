@@ -8,7 +8,7 @@ import services.ItemService
 import spray.json.DefaultJsonProtocol
 
 trait Protocols extends SprayJsonSupport with DefaultJsonProtocol{
-    implicit val itemFormat = jsonFormat3(Item)
+    implicit val itemFormat = jsonFormat4(Item)
 }
 
 class ItemRoute(val itemService:ItemService) extends Protocols{
@@ -28,16 +28,16 @@ class ItemRoute(val itemService:ItemService) extends Protocols{
                     }
                 }
             } ~ 
-            pathPrefix(String){ sku =>
+            path(LongNumber){ id =>
                 get {
                     complete{
-                        itemService.getItem(sku)
+                        itemService.getItem(id)
                     }
                 } ~
                 put {
                     entity(as[Item]){ itemUpdate => 
                         complete{
-                            itemService.updateItem(sku, itemUpdate)
+                            itemService.updateItem(id, itemUpdate)
                         }
                     }
                 }
