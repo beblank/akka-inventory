@@ -6,6 +6,7 @@ import http.ItemRoute
 import services.{DatabaseService, ItemService}
 import slick.jdbc.MySQLProfile
 import akka.http.scaladsl.Http
+import scala.io.StdIn
 
 object MainApp extends App{
     implicit val system = ActorSystem()
@@ -27,5 +28,10 @@ object MainApp extends App{
     val route = ItemRoute.route
 
     val port = if (sys.env.contains("PORT")) sys.env("PORT").toInt else config.getInt("http.port")
-    Http().bindAndHandle(route, "localhost", port)
+    val bindingFuture = Http().bindAndHandle(route, "localhost", port)
+    println(s"Server online at http://localhost:8080/\nPress RETURN to stop...")
+    StdIn.readLine() // let it run until user presses return
+    bindingFuture
+      .flatMap(_.unbind()) // trigger unbinding from the port
+      .onComplete(_ => system.terminate()) // and shutdown when done
 }
