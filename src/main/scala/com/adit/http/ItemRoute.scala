@@ -54,6 +54,36 @@ class ItemRoute(val itemService:ItemService) extends Protocols{
                         }
                     }
                 }
+            } ~ 
+            pathPrefix("in"){
+                pathEndOrSingleSlash{
+                    get{
+                        complete{
+                            itemService.getItemsIn()
+                        }
+                    } ~
+                    post{
+                        entity(as[ItemIn]){ itemCreate =>
+                            complete{
+                                itemService.createItemIn(itemCreate)
+                            }
+                        }
+                    }
+                }
+            } ~ 
+            path(LongNumber){ id =>
+                get {
+                    complete{
+                        itemService.getItemIn(id)
+                    }
+                } ~
+                put {
+                    entity(as[ItemIn]){ itemUpdate => 
+                        complete{
+                            itemService.updateItemIn(id, itemUpdate)
+                        }
+                    }
+                }
             }
         }
      } 
