@@ -4,6 +4,7 @@ lazy val scalaTestVersion   = "3.0.1"
 lazy val slickVersion       = "3.2.1"
 lazy val mysqlVersion       = "6.0.6"
 lazy val flywayVersion      = "5.0.7"
+lazy val h2Version      = "1.4.193"
 
 lazy val root = (project in file(".")).
   settings(
@@ -22,6 +23,7 @@ lazy val root = (project in file(".")).
       "com.typesafe.slick" %% "slick-hikaricp"        % slickVersion,
       "mysql"              %  "mysql-connector-java"  % mysqlVersion,
       "org.flywaydb"       %  "flyway-core"           % flywayVersion,
+      "com.h2database"     % "h2"                     % h2Version,
 
       "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion   % Test,
       "com.typesafe.akka" %% "akka-testkit"         % akkaVersion       % Test,
